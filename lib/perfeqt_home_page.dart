@@ -22,53 +22,69 @@ class MyHomePage extends State<PerfeqtHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      // main container with background color and padding
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: const Column(
+          children: [
+            WellBeingBox(),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.teal,
+    );
+  }
+}
+
+class WellBeingBox extends StatelessWidget {
+  const WellBeingBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 10.0,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width - 30,
-              margin:
-                  EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    blurRadius: 10.0,
-                    offset: const Offset(0, 3),
-                  )
-                ],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Well-being days'),
+              SizedBox(height: 5),
+              Text(
+                '270',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Text('Well-being days'),
-                      Text(
-                        '270',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text('Weight'),
-                      Text(
-                        '50 kgs',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text('Weight'),
+              SizedBox(height: 5),
+              Text(
+                '50 kgs',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
+            ],
           ),
         ],
       ),
-      backgroundColor: Colors.teal,
     );
   }
 }
