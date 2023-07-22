@@ -23,15 +23,88 @@ class MyHomePage extends State<PerfeqtHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // main container with background color and padding
-      body: Container(
-        padding: const EdgeInsets.all(15),
-        child: const Column(
-          children: [
-            WellBeingBox(),
-          ],
-        ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 50),
+            margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color(0xFF3625AF),
+              Color(0xFFD5D5FF),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            child: Column(
+              children: [
+                // hero widget
+                Column(
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Home',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Welcome to today\'s personalized program.',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/images/image-evening.png',
+                      width: double.infinity,
+                    ),
+                    Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        child: RichText(
+                            text: const TextSpan(children: [
+                          TextSpan(text: 'Perfect combination to achieve your'),
+                          TextSpan(
+                              text: ' Life Hacks.',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ])))
+                  ],
+                ),
+                SizedBox(height: 15),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(color: Colors.white),
+              child: Column(
+                children: [
+                  Transform.translate(
+                      offset: Offset(0, -50), child: WellBeingBox()),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.transparent,
     );
   }
 }
@@ -45,16 +118,15 @@ class WellBeingBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            blurRadius: 10.0,
-            offset: const Offset(0, 3),
+            color: Color.fromARGB(30, 13, 63, 103),
+            blurRadius: 30,
+            offset: const Offset(0, 16),
           )
         ],
       ),
