@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/homepage_constant.dart';
 
 class PerfeqtHomePage extends StatefulWidget {
   const PerfeqtHomePage({super.key, required this.title});
@@ -19,6 +20,24 @@ class MyHomePage extends State<PerfeqtHomePage> {
     ));
   }
 
+  static Color colorTop = HomepageConstant.eveningTop;
+  static Color colorBottom = HomepageConstant.eveningBottom;
+  var activeBackground = HomepageConstant.evening;
+
+  void toggleBackground() {
+    setState(() {
+      colorTop = activeBackground == HomepageConstant.evening
+          ? HomepageConstant.eveningTop
+          : HomepageConstant.afternoonTop;
+      colorBottom = activeBackground == HomepageConstant.evening
+          ? HomepageConstant.eveningBottom
+          : HomepageConstant.afternoonBottom;
+      activeBackground = activeBackground == HomepageConstant.evening
+          ? HomepageConstant.afternoon
+          : HomepageConstant.evening;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +47,10 @@ class MyHomePage extends State<PerfeqtHomePage> {
           Container(
             padding: const EdgeInsets.fromLTRB(15, 15, 15, 50),
             margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-              Color(0xFF3625AF),
-              Color(0xFFD5D5FF),
+              colorTop,
+              colorBottom,
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             child: Column(
               children: [
@@ -72,7 +91,7 @@ class MyHomePage extends State<PerfeqtHomePage> {
                       ],
                     ),
                     Image.asset(
-                      'assets/images/image-evening.png',
+                      activeBackground,
                       width: double.infinity,
                     ),
                     Container(
@@ -98,6 +117,14 @@ class MyHomePage extends State<PerfeqtHomePage> {
                 children: [
                   Transform.translate(
                       offset: Offset(0, -50), child: WellBeingBox()),
+                  ElevatedButton(
+                    onPressed: toggleBackground,
+                    style: ElevatedButton.styleFrom(
+                        elevation: 1.0,
+                        backgroundColor: Color(0xFF3625AF),
+                        textStyle: const TextStyle(color: Colors.white)),
+                    child: const Text('Change Background'),
+                  ),
                 ],
               ),
             ),
